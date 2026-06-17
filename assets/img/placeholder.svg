@@ -1,0 +1,15 @@
+<!-- Generic avatar placeholder. Replace the <img src> in index.html with a
+     real square photo (e.g. assets/img/abhishek-gupta.jpg) per person. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Photo placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8ecf7"/>
+      <stop offset="1" stop-color="#d4dbef"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#bg)"/>
+  <g fill="#9aa6c7">
+    <circle cx="100" cy="78" r="36"/>
+    <path d="M100 124c-38 0-68 24-68 60v16h136v-16c0-36-30-60-68-60z"/>
+  </g>
+</svg>

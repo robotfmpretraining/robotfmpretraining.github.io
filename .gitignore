@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+._*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Node (only if you later add tooling/build steps)
+node_modules/
+npm-debug.log*
+
+# Local server / build output
+.cache/
+dist/

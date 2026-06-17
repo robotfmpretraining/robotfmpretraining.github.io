@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================================================================
+       PAGE METADATA  (edit the title / description for SEO + social cards)
+  ==================================================================== -->
+  <title>Robot FM Pre-Training — CoRL 2026 Workshop</title>
+  <meta name="description"
+        content="CoRL 2026 Workshop on what pre-training objectives for robotics foundation models should be." />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="What Should Pre-Training Objectives for Robotics Foundation Models Be?" />
+  <meta property="og:description" content="A half-day CoRL 2026 workshop on pre-training objectives for robotics foundation models." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Fonts (Inter). Remove this line to fall back to the system font stack. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ===================================================================
+       NAVBAR
+       To rename a link, edit the text. The href (#id) must match a
+       section's id below.
+  ==================================================================== -->
+  <header class="navbar" id="top">
+    <div class="container navbar__inner">
+      <a class="navbar__brand" href="#top">
+        Robot&nbsp;FM Pre-Training
+        <span class="navbar__brand-sub">CoRL 2026</span>
+      </a>
+
+      <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navbar__links">
+        <a href="#overview">Overview</a>
+        <a href="#topics">Topics</a>
+        <a href="#cfp">Call for Papers</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#organizers">Organizers</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       HERO
+       Update the date / location once the conference confirms them.
+  ==================================================================== -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">CoRL 2026 · Half-Day Workshop</p>
+      <h1 class="hero__title">
+        What Should Pre-Training Objectives for<br />
+        Robotics Foundation Models Be?
+      </h1>
+      <p class="hero__tagline">
+        Surfacing the core principles — and the open disagreements — behind how we
+        pre-train Vision-Language-Action models, World Action Models, and the next
+        generation of robotics foundation models.
+      </p>
+
+      <ul class="hero__meta">
+        <li><span class="hero__meta-icon">📅</span> Date TBA</li>
+        <li><span class="hero__meta-icon">📍</span> CoRL 2026 · Location TBA</li>
+        <li><span class="hero__meta-icon">🕘</span> Morning half-day session</li>
+      </ul>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#cfp">Call for Papers</a>
+        <!-- TODO: replace "#" with your OpenReview submission link when open -->
+        <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Submit a Paper</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- =================================================================
+         OVERVIEW
+    ================================================================== -->
+    <section id="overview" class="section">
+      <div class="container">
+        <h2 class="section__title">Overview</h2>
+
+        <div class="prose">
+          <p>
+            Robotics foundation models are rapidly transforming robot learning, yet the
+            field lacks consensus on a fundamental question: <em>what pre-training
+            objectives actually matter?</em> Today's most capable systems — including
+            Vision-Language-Action models (VLAs), World Action Models (WAMs), and related
+            architectures — draw on heterogeneous data sources spanning internet-scale
+            video, large-scale simulation, and real robot demonstrations. Each modality
+            implies a different supervisory signal: behavior cloning from teleoperation,
+            action-conditioned future prediction, latent action inference from passive
+            observation, and more. These objectives are rarely compared directly, and the
+            choices that dominate today's systems often reflect data availability and
+            engineering convenience as much as a principled understanding of what embodied
+            intelligence requires.
+          </p>
+          <p>
+            Several tensions sit at the heart of this uncertainty. Can action grounding be
+            learned from passive internet video, where action labels are absent, or is
+            large-scale interaction data indispensable? Do generative world models yield
+            representations that transfer better than those learned by directly imitating
+            actions? At what level of abstraction should policies be supervised — latent
+            actions, end-effector trajectories, or low-level control? How much does natural
+            language contribute to physical capability versus serving as a convenient task
+            interface? And do the scaling laws that govern language and vision pre-training
+            even hold for robotics, where data is scarcer, more expensive, and far less
+            uniform?
+          </p>
+          <p>
+            This half-day workshop brings together researchers from robot learning, computer
+            vision, and foundation model development to surface and discuss the core
+            principles that should guide pre-training for embodied AI. Rather than showcasing
+            incremental system improvements, the workshop foregrounds disagreement: we invite
+            <strong>contrarian positions, negative results, and cross-cutting analyses</strong>
+            that clarify why particular objectives succeed or fail. Through invited talks,
+            contributed papers, and a panel discussion, we aim to move the community toward a
+            clearer account of what pre-training for robotics should optimize for.
+          </p>
+          <p>
+            The workshop targets researchers and practitioners working on robot manipulation,
+            locomotion, and embodied AI broadly, as well as those from adjacent fields such as
+            computer vision, natural language processing, and generative modeling. We
+            particularly welcome participants who can bring evidence and perspective from
+            outside robotics proper, since many of the pre-training objectives now under debate
+            originated in these neighboring communities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         TOPICS / CORE RESEARCH QUESTIONS
+         Each card = one research question. Copy a <li> block to add more.
+    ================================================================== -->
+    <section id="topics" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title">Core Challenges &amp; Research Questions</h2>
+        <p class="section__lead">
+          The workshop is organized around six open questions about pre-training for robotics.
+        </p>
+
+        <ul class="qa-grid">
+          <li class="qa-card">
+            <h3>What pre-training objectives transfer best to downstream robot tasks?</h3>
+            <p>
+              Does next-token prediction over video, action-conditioned prediction, contrastive
+              alignment, or some combination yield representations that generalize to unseen
+              manipulation and locomotion tasks?
+            </p>
+          </li>
+          <li class="qa-card">
+            <h3>How should models balance passive video vs. active interaction data?</h3>
+            <p>
+              Internet-scale video is cheap and abundant but passive; real robot data is scarce
+              but action-grounded. What is the right mixture and objective design to exploit both?
+            </p>
+          </li>
+          <li class="qa-card">
+            <h3>What role does simulation play in pre-training?</h3>
+            <p>
+              Simulation offers unlimited interaction data but suffers from a reality gap. How can
+              pre-training objectives be designed to minimize sim-to-real transfer costs?
+            </p>
+          </li>
+          <li class="qa-card">
+            <h3>VLAs vs. World Action Models vs. alternatives — what does each get right?</h3>
+            <p>
+              How do language-conditioned action prediction objectives compare to world-model-based
+              objectives that predict future states? What are the failure modes of each?
+            </p>
+          </li>
+          <li class="qa-card">
+            <h3>How do we evaluate pre-training quality?</h3>
+            <p>
+              What benchmarks and probing tasks can reliably measure whether a pre-trained model has
+              acquired the physical common sense, object permanence, and causal understanding robots need?
+            </p>
+          </li>
+          <li class="qa-card">
+            <h3>Do scaling laws hold for robotics pre-training?</h3>
+            <p>
+              Do the scaling laws established for language and vision transfer to robot learning? How
+              does data diversity interact with model scale under different objectives?
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         CALL FOR PAPERS
+    ================================================================== -->
+    <section id="cfp" class="section">
+      <div class="container cfp">
+        <div class="cfp__main">
+          <h2 class="section__title">Call for Papers</h2>
+          <p class="section__lead">
+            We solicit <strong>8-page workshop papers</strong> (plus references), formatted
+            using the CoRL template. The workshop is <strong>non-archival</strong>. Topics
+            include but are not limited to:
+          </p>
+
+          <ul class="topic-list">
+            <li>Novel pre-training objectives for robot learning (video prediction, action-conditioned modeling, contrastive methods, etc.)</li>
+            <li>Comparative evaluations of VLAs, World Action Models, and related architectures</li>
+            <li>Data curation and mixture strategies for robot foundation model pre-training</li>
+            <li>Sim-to-real transfer under different pre-training regimes</li>
+            <li>Scaling laws and evaluation benchmarks for embodied pre-training</li>
+            <li>Theoretical analyses of what different objectives capture about the physical world</li>
+          </ul>
+
+          <p class="prose">
+            Submissions will be reviewed by the organizers and program committee for relevance and
+            quality. Accepted papers will be posted on this website. Two <strong>Best Paper
+            Awards</strong> with a sponsored prize will be presented to the most outstanding
+            submissions; an author from each awarded paper will be invited to join the panel
+            discussion.
+          </p>
+
+          <div class="cfp__actions">
+            <!-- TODO: replace "#" with your OpenReview submission link -->
+            <a class="btn btn--primary" href="#" target="_blank" rel="noopener">Submit on OpenReview</a>
+            <!-- TODO: point to the CoRL LaTeX template / style files -->
+            <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">CoRL Template</a>
+          </div>
+        </div>
+
+        <!-- IMPORTANT DATES — fill in real dates as they are confirmed (all TBA for now) -->
+        <aside class="dates-card" aria-label="Important dates">
+          <h3 class="dates-card__title">Important Dates</h3>
+          <ul class="dates-list">
+            <li>
+              <span class="dates-list__label">Paper submission</span>
+              <span class="dates-list__value">TBA</span>
+            </li>
+            <li>
+              <span class="dates-list__label">Author notification</span>
+              <span class="dates-list__value">TBA</span>
+            </li>
+            <li>
+              <span class="dates-list__label">Camera-ready</span>
+              <span class="dates-list__value">TBA</span>
+            </li>
+            <li>
+              <span class="dates-list__label">Workshop day</span>
+              <span class="dates-list__value">TBA</span>
+            </li>
+          </ul>
+          <p class="dates-card__note">All deadlines are 23:59 AoE.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         SCHEDULE
+         Times are tentative (9:00 AM start). Edit rows directly.
+    ================================================================== -->
+    <section id="schedule" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title">Schedule</h2>
+        <p class="section__lead">
+          A morning half-day session. Times are tentative and may shift to match the conference program.
+        </p>
+
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Session</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="schedule__time">9:00 – 9:15</td>
+              <td>Opening &amp; framing remarks <span class="schedule__who">(organizers)</span></td>
+            </tr>
+            <tr>
+              <td class="schedule__time">9:15 – 9:40</td>
+              <td>Invited talk — Abhishek Gupta <span class="schedule__who">University of Washington</span></td>
+            </tr>
+            <tr>
+              <td class="schedule__time">9:40 – 10:05</td>
+              <td>Invited talk — Pete Florence <span class="schedule__who">Generalist AI</span></td>
+            </tr>
+            <tr>
+              <td class="schedule__time">10:05 – 10:35</td>
+              <td>Contributed spotlight talks <span class="schedule__who">(3–4 papers)</span></td>
+            </tr>
+            <tr class="schedule__break">
+              <td class="schedule__time">10:35 – 11:05</td>
+              <td>☕ Coffee break &amp; poster viewing</td>
+            </tr>
+            <tr>
+              <td class="schedule__time">11:05 – 11:30</td>
+              <td>Invited talk — Chelsea Finn <span class="schedule__who">Stanford / Physical Intelligence</span></td>
+            </tr>
+            <tr>
+              <td class="schedule__time">11:30 – 11:55</td>
+              <td>Invited talk — Qianqian Wang <span class="schedule__who">Harvard / Rhoda AI</span></td>
+            </tr>
+            <tr>
+              <td class="schedule__time">11:55 – 12:25</td>
+              <td>Panel discussion</td>
+            </tr>
+            <tr>
+              <td class="schedule__time">12:25 – 12:55</td>
+              <td>Poster session &amp; open discussion</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         INVITED SPEAKERS
+         To add a speaker, copy one <li class="person-card"> block.
+         Photos: drop a square image in assets/img/ and update the <img src>.
+    ================================================================== -->
+    <section id="speakers" class="section">
+      <div class="container">
+        <h2 class="section__title">Invited Speakers</h2>
+
+        <ul class="people-grid">
+          <li class="person-card">
+            <!-- Photo source: https://homes.cs.washington.edu/~abhgupta/ -->
+            <img class="person-card__photo" src="assets/img/abhishek-gupta.jpeg" alt="Photo of Abhishek Gupta" />
+            <h3 class="person-card__name">Abhishek Gupta</h3>
+            <p class="person-card__affil">University of Washington</p>
+          </li>
+
+          <li class="person-card">
+            <!-- Photo source: https://peteflorence.com -->
+            <img class="person-card__photo" src="assets/img/pete-florence.jpg" alt="Photo of Pete Florence" />
+            <h3 class="person-card__name">Pete Florence</h3>
+            <p class="person-card__affil">Generalist AI</p>
+          </li>
+
+          <li class="person-card">
+            <!-- Photo source: https://ai.stanford.edu/~cbfinn/ -->
+            <img class="person-card__photo" src="assets/img/chelsea-finn.jpg" alt="Photo of Chelsea Finn" />
+            <h3 class="person-card__name">Chelsea Finn</h3>
+            <p class="person-card__affil">Stanford University / Physical Intelligence</p>
+          </li>
+
+          <li class="person-card">
+            <!-- Photo source: https://qianqianwang68.github.io -->
+            <img class="person-card__photo" src="assets/img/qianqian-wang.jpg" alt="Photo of Qianqian Wang" />
+            <h3 class="person-card__name">Qianqian Wang</h3>
+            <p class="person-card__affil">Harvard University / Rhoda AI</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         ORGANIZERS
+    ================================================================== -->
+    <section id="organizers" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title">Organizers</h2>
+
+        <ul class="people-grid people-grid--small">
+          <li class="person-card">
+            <!-- Photo source: https://jiafei1224.github.io/ -->
+            <img class="person-card__photo" src="assets/img/jiafei-duan.jpg" alt="Photo of Jiafei Duan" />
+            <h3 class="person-card__name">Jiafei Duan</h3>
+            <p class="person-card__affil">NUS Computing</p>
+          </li>
+          <li class="person-card">
+            <!-- Photo source: https://wenlonghuang.com/ -->
+            <img class="person-card__photo" src="assets/img/wenlong-huang.jpg" alt="Photo of Wenlong Huang" />
+            <h3 class="person-card__name">Wenlong Huang</h3>
+            <p class="person-card__affil">Stanford University</p>
+          </li>
+          <li class="person-card">
+            <!-- Photo source: https://homes.cs.washington.edu/~zchuning/ -->
+            <img class="person-card__photo" src="assets/img/chuning-zhu.jpg" alt="Photo of Chuning Zhu" />
+            <h3 class="person-card__name">Chuning Zhu</h3>
+            <p class="person-card__affil">University of Washington</p>
+          </li>
+          <li class="person-card">
+            <!-- Photo source: https://www.yixuanwang.me/ -->
+            <img class="person-card__photo" src="assets/img/yixuan-wang.jpg" alt="Photo of Yixuan Wang" />
+            <h3 class="person-card__name">Yixuan Wang</h3>
+            <p class="person-card__affil">Columbia University &amp; NVIDIA SRL</p>
+          </li>
+          <li class="person-card">
+            <!-- Photo source: https://lucys0.github.io/ -->
+            <img class="person-card__photo" src="assets/img/lucy-shi.jpg" alt="Photo of Lucy Shi" />
+            <h3 class="person-card__name">Lucy Shi</h3>
+            <p class="person-card__affil">Stanford University</p>
+          </li>
+          <li class="person-card">
+            <!-- Photo source: https://profiles.stanford.edu/fei-fei-li -->
+            <img class="person-card__photo" src="assets/img/fei-fei-li.jpg" alt="Photo of Fei-Fei Li" />
+            <h3 class="person-card__name">Fei-Fei Li</h3>
+            <p class="person-card__affil">Stanford University</p>
+          </li>
+          <li class="person-card">
+            <!-- Photo source: https://yunzhuli.github.io/ -->
+            <img class="person-card__photo" src="assets/img/yunzhu-li.jpg" alt="Photo of Yunzhu Li" />
+            <h3 class="person-card__name">Yunzhu Li</h3>
+            <p class="person-card__affil">Columbia University</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       FOOTER
+  ==================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <p class="footer__title">Robot FM Pre-Training</p>
+        <p class="footer__sub">A CoRL 2026 Workshop</p>
+      </div>
+      <div class="footer__contact">
+        <!-- TODO: replace with your real contact email or mailing list -->
+        <a href="mailto:robotfmpretraining@gmail.com">robotfmpretraining@gmail.com</a>
+        <a href="https://www.corl.org" target="_blank" rel="noopener">CoRL 2026</a>
+      </div>
+    </div>
+    <p class="footer__copy">© <span id="year">2026</span> Robot FM Pre-Training Workshop. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
