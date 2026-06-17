@@ -15,21 +15,23 @@
 
 /* 1. DESIGN TOKENS ---------------------------------------------------- */
 :root {
-  /* Brand colors — change these two to recolor the whole site */
-  --primary:        #3949ab;   /* indigo */
-  --primary-dark:   #283593;
-  --accent:         #00b3a4;   /* teal, used for small highlights */
+  /* Brand colors — change these to recolor the whole site.
+     Orange matches the official CoRL 2026 site (#bf5700, "burnt orange"). */
+  --primary:        #bf5700;   /* CoRL burnt orange */
+  --primary-dark:   #8f4100;   /* darker shade for hovers + headings */
+  --accent:         #f2a900;   /* warm amber, used for small highlights */
 
-  /* Neutrals */
-  --text:           #1c2433;
-  --text-muted:     #5b6678;
+  /* Neutrals (warm-tinted to match the orange palette) */
+  --text:           #1f1b16;
+  --text-muted:     #6e6357;
   --bg:             #ffffff;
-  --bg-alt:         #f4f6fb;   /* alternating section background */
-  --border:         #e3e7f0;
+  --bg-alt:         #faf5ef;   /* warm cream — alternating section background */
+  --border:         #ece4d9;
 
-  /* Hero gradient */
-  --hero-from:      #1b2350;
-  --hero-to:        #3949ab;
+  /* Hero gradient (drama: deep warm orange on the left → bright peach on the
+     right, left→right). Text sits on the dark left, so it's white. */
+  --hero-from:      #a8480a;
+  --hero-to:        #ffdcb4;
 
   /* Layout */
   --container:      1080px;
@@ -162,27 +164,34 @@ img { max-width: 100%; display: block; }
 .hero {
   color: #fff;
   background:
-    radial-gradient(1200px 500px at 80% -10%, rgba(0, 179, 164, 0.25), transparent 60%),
-    linear-gradient(135deg, var(--hero-from), var(--hero-to));
-  /* subtle dotted texture for a "technical" feel */
+    /* bright bloom on the right to amplify the light side */
+    radial-gradient(760px 560px at 97% 28%, rgba(255, 237, 210, 0.55), transparent 60%),
+    /* deep → mid → light, left to right; the brightest peach only at the far right */
+    linear-gradient(100deg,
+      var(--hero-from) 0%,
+      #bd5a0e 50%,
+      #e0823a 76%,
+      var(--hero-to) 100%);
   position: relative;
   overflow: hidden;
 }
+/* sparse dot texture — light dots that read on the dark left and dissolve into the bright right */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 26px 26px;
+  z-index: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1.4px, transparent 1.6px);
+  background-size: 36px 36px;
   pointer-events: none;
 }
-.hero__inner { position: relative; padding: 96px 24px 88px; }
+.hero__inner { position: relative; z-index: 1; padding: 112px 24px 100px; }
 .hero__eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.8rem;
-  font-weight: 600;
-  color: #b9c4ff;
+  font-weight: 700;
+  color: #ffd9a8;
   margin: 0 0 18px;
 }
 .hero__title {
@@ -190,11 +199,12 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   letter-spacing: -0.03em;
   margin: 0 0 20px;
+  text-shadow: 0 2px 16px rgba(90, 35, 0, 0.3); /* warm, keeps text crisp toward the bright side */
 }
 .hero__tagline {
   font-size: 1.12rem;
   max-width: 680px;
-  color: #dfe4ff;
+  color: #ffe7d2;
   margin: 0 0 30px;
 }
 .hero__meta {
@@ -205,7 +215,7 @@ img { max-width: 100%; display: block; }
   padding: 0;
   margin: 0 0 34px;
   font-size: 0.98rem;
-  color: #eef1ff;
+  color: #fff1e6;
 }
 .hero__meta li { display: flex; align-items: center; gap: 8px; }
 .hero__meta-icon { opacity: 0.9; }
@@ -221,20 +231,20 @@ img { max-width: 100%; display: block; }
   transition: transform 0.12s ease, background 0.2s ease, color 0.2s ease;
 }
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
-.btn--primary { background: #fff; color: var(--primary-dark); }
-.btn--primary:hover { background: #eef1ff; }
+.btn--primary { background: var(--primary); color: #fff; }
+.btn--primary:hover { background: var(--primary-dark); }
 .btn--ghost {
   background: transparent;
-  color: #fff;
-  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
 }
-.btn--ghost:hover { background: rgba(255, 255, 255, 0.12); }
+.btn--ghost:hover { background: rgba(191, 87, 0, 0.08); }
 
-/* Buttons placed on light sections (CFP) */
-.cfp__actions .btn--primary { background: var(--primary); color: #fff; }
-.cfp__actions .btn--primary:hover { background: var(--primary-dark); }
-.cfp__actions .btn--ghost { color: var(--primary); border-color: var(--border); }
-.cfp__actions .btn--ghost:hover { background: var(--bg-alt); }
+/* Inside the hero the background is dark on the left, so buttons go light */
+.hero .btn--primary { background: #fff; color: var(--primary-dark); }
+.hero .btn--primary:hover { background: #fff0e3; }
+.hero .btn--ghost { color: #fff; border-color: rgba(255, 255, 255, 0.6); }
+.hero .btn--ghost:hover { background: rgba(255, 255, 255, 0.14); }
 
 /* 7a. TOPICS / Q&A GRID ----------------------------------------------- */
 .qa-grid {
@@ -356,8 +366,8 @@ img { max-width: 100%; display: block; }
 
 /* 8. FOOTER ----------------------------------------------------------- */
 .footer {
-  background: #11162a;
-  color: #c7cde0;
+  background: #1c1611;
+  color: #d8ccc0;
   padding: 48px 0 28px;
 }
 .footer__inner {
@@ -370,11 +380,11 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .footer__title { font-weight: 800; color: #fff; margin: 0; font-size: 1.15rem; }
-.footer__sub { margin: 4px 0 0; color: #9aa3c0; }
+.footer__sub { margin: 4px 0 0; color: #ab9c8d; }
 .footer__contact { display: flex; flex-direction: column; gap: 6px; text-align: right; }
-.footer__contact a { color: #c7cde0; }
+.footer__contact a { color: #d8ccc0; }
 .footer__contact a:hover { color: #fff; }
-.footer__copy { text-align: center; margin: 22px 0 0; font-size: 0.85rem; color: #8a93b2; }
+.footer__copy { text-align: center; margin: 22px 0 0; font-size: 0.85rem; color: #9a8b7c; }
 
 /* 9. RESPONSIVE ------------------------------------------------------- */
 @media (max-width: 820px) {
